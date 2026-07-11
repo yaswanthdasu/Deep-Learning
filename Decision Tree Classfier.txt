@@ -1,0 +1,24 @@
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+
+# Dataset
+data = {
+    'Engine_Temperature': [60, 70, 80, 90, 100, 110, 120],
+    'Vehicle_Health': ['Excellent', 'Good', 'Good', 'Average', 'Poor', 'Poor', 'Critical']
+}
+
+df = pd.DataFrame(data)
+
+X = df[['Engine_Temperature']]
+y = df['Vehicle_Health']
+
+# Create model
+model = DecisionTreeClassifier()
+
+# Train model
+model.fit(X, y)
+
+# Predict vehicle health for 95°C
+prediction = model.predict([[95]])
+
+print("Predicted Vehicle Health:", prediction[0])
