@@ -1,0 +1,13 @@
+import numpy as np
+
+# Coin toss data (1 = Head, 0 = Tail)
+data = np.array([1, 1, 0, 1, 1, 1, 0, 1, 0, 1])
+
+# MLE estimate
+p_mle = np.mean(data)
+
+print("Coin Toss Data:", data)
+print("Number of Heads:", np.sum(data))
+print("Total Tosses:", len(data))
+print("MLE Probability of Heads:", p_mle)
+print("MLE Probability of Tails:", 1 - p_mle)
