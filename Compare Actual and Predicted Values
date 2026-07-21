@@ -1,0 +1,25 @@
+# Compare Actual and Predicted Values
+
+correct = 0
+incorrect = 0
+
+print("Actual\tPredicted\tResult")
+
+for actual, predicted in zip(y_test, y_pred):
+
+    if actual == predicted:
+        print(actual, "\t", predicted, "\t\tCorrect")
+        correct += 1
+
+    else:
+        print(actual, "\t", predicted, "\t\tIncorrect")
+        incorrect += 1
+
+print("\nTotal Correct Predictions :", correct)
+print("Total Incorrect Predictions :", incorrect)
+
+accuracy = (correct / (correct + incorrect)) * 100
+error_rate = (incorrect / (correct + incorrect)) * 100
+
+print("Accuracy :", round(accuracy, 2), "%")
+print("Error Rate :", round(error_rate, 2), "%")
