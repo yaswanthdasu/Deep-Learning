@@ -1,0 +1,37 @@
+import tensorflow as tf
+from tensorflow.keras.layers import Input, Dense
+from tensorflow.keras.models import Model
+from sklearn.datasets import load_digits
+from sklearn.model_selection import train_test_split
+
+# Load data
+data = load_digits()
+X = data.data / 16.0
+
+# Encoder
+input_layer = Input(shape=(64,))
+encoded = Dense(32, activation='relu')(input_layer)
+encoded = Dense(16, activation='relu')(encoded)
+
+# Decoder
+decoded = Dense(32, activation='relu')(encoded)
+decoded = Dense(64, activation='sigmoid')(decoded)
+
+# Autoencoder
+autoencoder = Model(input_layer, decoded)
+
+autoencoder.compile(optimizer='adam',
+                    loss='mse')
+
+autoencoder.fit(X, X,
+                epochs=50,
+                batch_size=32)
+
+# Reconstruction
+reconstructed = autoencoder.predict(X)
+
+print("Original:")
+print(X[0])
+
+print("Reconstructed:")
+print(reconstructed[0])
